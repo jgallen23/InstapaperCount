@@ -1,16 +1,17 @@
 (function($) {
 	var count = $("#bookmark_list > div").length;
 	var updateCount = function() {
-		if ($("#content h2 span.count").length == 0) {
-			$("#content h2").prepend('<span class="count">' + count + '</span>');
+		var countElement = $("#content h2 span.count");
+		if (countElement.length == 0) {
+			$("#content h2 span:eq(1)").before('<span class="count">(' + count + ')</span>');
 		} else {
-			$("#content h2 span.count").text(count);
+			countElement.text("("+count+")");
 		}
 		document.title = "Instapaper (" + count + ")";
 	};
 	updateCount();
 
-	$(".deleteButton").bind("click", function() {
+	$(".archiveButton").bind("click", function() {
 		count--;
 		updateCount();
 		return false;
